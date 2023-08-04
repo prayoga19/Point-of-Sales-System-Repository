@@ -8,6 +8,7 @@ import { RepositoryModule } from './models/repository/repository.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ProductModule } from './modules/product/product.module';
+import { TransactionModule } from './modules/transaction/transaction.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ProductModule } from './modules/product/product.module';
     UserModule,
     AuthModule,
     ProductModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

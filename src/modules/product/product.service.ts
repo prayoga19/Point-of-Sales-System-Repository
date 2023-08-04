@@ -9,6 +9,7 @@ import { Product } from 'src/models/entities/product.entity';
 @Injectable()
 export class ProductService {
   public constructor(private readonly repoService: RepositoryService) {}
+ 
   async getAllProduct(options: IPaginationOptions) {
     const productData = await this.repoService.productRepo
       .createQueryBuilder('product')
