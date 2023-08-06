@@ -13,14 +13,12 @@ export class AuthController {
     private readonly userService: UserService,
   ) {}
 
-  @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Body() body: AuthLoginDTO, @Request() req) {
     return await this.authService.generateJwt(req.user);
   }
 
   @Post('register')
-  @UseGuards()
   async register(@Body() body: CreateUserDto) {
     return await this.authService.register(body);
   }
