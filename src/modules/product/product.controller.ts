@@ -14,7 +14,7 @@ import {
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProduct } from './dto/update-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('product')
@@ -47,7 +47,10 @@ export class ProductController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() updateProduct: UpdateProduct) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateProduct: UpdateProductDto,
+  ) {
     return this.productService.updateProduct(String(id), updateProduct);
   }
 
