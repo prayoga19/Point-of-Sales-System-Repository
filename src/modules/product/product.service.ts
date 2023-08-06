@@ -2,14 +2,14 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { RepositoryService } from 'src/models/repository/repository.service';
 import { UserService } from '../user/user.service';
 import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProduct } from './dto/update-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 import { IPaginationOptions, paginate } from 'nestjs-typeorm-paginate';
 import { Product } from 'src/models/entities/product.entity';
 
 @Injectable()
 export class ProductService {
   public constructor(private readonly repoService: RepositoryService) {}
- 
+
   async getAllProduct(options: IPaginationOptions) {
     const productData = await this.repoService.productRepo
       .createQueryBuilder('product')
@@ -45,7 +45,7 @@ export class ProductService {
     return productData;
   }
 
-  async updateProduct(id: string, payloads: UpdateProduct) {
+  async updateProduct(id: string, payloads: UpdateProductDto) {
     await this.repoService.productRepo.update(id, payloads);
     const updateProductData = await this.repoService.productRepo.findOne({
       where: { id },
@@ -76,5 +76,6 @@ export class ProductService {
         HttpStatus.NOT_FOUND,
       );
     }
+    return 'Product deleted successfully';
   }
 }
